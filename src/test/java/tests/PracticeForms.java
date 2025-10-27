@@ -1,5 +1,6 @@
 package tests;
 
+import helpMethods.ElementsMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -14,44 +15,36 @@ import java.util.List;
 public class PracticeForms {
 
     public WebDriver driver;
+    ElementsMethods elementsMethods;
 
     @Test
 
     public void metodaTest() {
 
-        //Deschidem un browser;
-
         driver = new ChromeDriver();
+        elementsMethods = new ElementsMethods(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        //Accesam un URL;
 
         driver.get("https://demoqa.com/");
         driver.manage().window().maximize();
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        js.executeScript("arguments[0].click();", formsMenu);
+        elementsMethods.javaScriptElement(formsMenu);
 
         WebElement practiceForm = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        js.executeScript("arguments[0].click();", practiceForm);
+        elementsMethods.javaScriptElement(practiceForm);
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
-        String firstName = "Mihaela";
-        firstNameElement.sendKeys(firstName);
+        elementsMethods.fillElement(firstNameElement, "Johny");
 
         WebElement lastNameElement = driver.findElement(By.id("lastName"));
-        String lastName = "Moga";
-        lastNameElement.sendKeys(lastName);
+        elementsMethods.fillElement(lastNameElement, "Cash");
 
         WebElement emailElement = driver.findElement(By.id("userEmail"));
-        String userEmail = "test@gmail.com";
-        emailElement.sendKeys("test@gmail.com");
+        elementsMethods.fillElement(emailElement, "test@gmail.com");
 
         WebElement mobileElement = driver.findElement(By.id("userNumber"));
-        String userNumber = "0728335508";
-        mobileElement.sendKeys(userNumber);
-
-        //Date of birth interaction;
+        elementsMethods.fillElement(mobileElement, "0728335508");
 
         WebElement dateOfBirth = driver.findElement(By.id("dateOfBirthInput"));
         dateOfBirth.click();

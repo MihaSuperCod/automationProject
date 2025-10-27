@@ -30,6 +30,6 @@ public class ElementsMethods {
     public void javaScriptElement(WebElement element){
         waitVisibleElement(element);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click()");
+        js.executeScript("arguments[0].click();", element);
     }
 }
