@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.AlertsWindows;
+import pages.HomePage;
 
 import java.sql.Driver;
 import java.time.Duration;
@@ -26,13 +28,12 @@ public class AlertTest {
         driver.manage().window().maximize();
         elementsMethods = new ElementsMethods(driver);
         alertsMethods = new AlertsMethods(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        WebElement alertMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementsMethods.javaScriptElement(alertMenu);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAlertFrameWindow();
 
-        WebElement tabButton = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        elementsMethods.clickElement(tabButton);
+        AlertsWindows alertsWindows = new AlertsWindows(driver);
+        alertsWindows.clickAlert();
 
         WebElement firstAlertElement = driver.findElement(By.id("alertButton"));
         elementsMethods.clickElement(firstAlertElement);
@@ -55,6 +56,5 @@ public class AlertTest {
         WebElement fourthAlertElement = driver.findElement(By.id("promtButton"));
         elementsMethods.clickElement(fourthAlertElement);
         alertsMethods.fillAlert("Buna ziua");
-
     }
 }

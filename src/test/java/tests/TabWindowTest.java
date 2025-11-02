@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class TabWindowTest {
         elementsMethods = new ElementsMethods(driver);
         tabMethods = new TabMethods(driver);
 
-        WebElement alertMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementsMethods.javaScriptElement(alertMenu);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAlertFrameWindow();
 
         WebElement tabButton = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
         elementsMethods.javaScriptElement(tabButton);
