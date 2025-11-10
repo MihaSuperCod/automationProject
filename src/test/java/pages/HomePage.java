@@ -29,4 +29,12 @@ public class HomePage {
     public void clickElementsMenu(){
         elementsMethods.javaScriptElement(elementsMenu);
     }
-}
+
+    @FindBy(xpath = "//h5[text()='Forms']")
+    public WebElement formsMenu;
+
+    public void formsMenu(){
+        elementsMethods.javaScriptElement(formsMenu);
+    }
+    }
+
