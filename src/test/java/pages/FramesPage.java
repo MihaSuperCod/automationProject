@@ -7,21 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FramesPage {
-
-    public WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public FrameMethods frameMethods;
-
-    public FramesPage(WebDriver driver) {
-        this.driver = driver;
-        elementsMethods = new ElementsMethods(this.driver);
-        frameMethods = new FrameMethods(this.driver);
-        PageFactory.initElements(this.driver, this);
-    }
+public class FramesPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Frames']")
     public WebElement framesButton;
+
+    public FramesPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void clickFramesButton() {
         elementsMethods.javaScriptElement(framesButton);

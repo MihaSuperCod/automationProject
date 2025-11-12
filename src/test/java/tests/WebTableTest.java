@@ -11,21 +11,18 @@ import org.testng.annotations.Test;
 import pages.ElementsPage;
 import pages.HomePage;
 import pages.WebTablesPage;
+import sharedData.ShareData;
 
 import java.util.List;
 
-public class WebTableTest {
+public class WebTableTest extends ShareData {
 
-    public WebDriver driver;
     ElementsMethods elementsMethod;
 
     @Test
 
     public void metodaTest() {
 
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize();
         elementsMethod = new ElementsMethods(driver);
 
         HomePage homePage = new HomePage(driver);

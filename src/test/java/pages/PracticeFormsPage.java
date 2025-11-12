@@ -9,16 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class PracticeFormsPage {
-    public WebDriver driver;
-    public ElementsMethods elementsMethod;
-    private Object elementsMethods;
-
-    public PracticeFormsPage(WebDriver driver) {
-        this.driver = driver;
-        elementsMethod = new ElementsMethods(this.driver);
-        PageFactory.initElements(this.driver, this);
-    }
+public class PracticeFormsPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Practice Form']")
     public WebElement practiceForm;
@@ -48,6 +39,10 @@ public class PracticeFormsPage {
     @FindBy(xpath = "//div[contains(@class,'react-datepicker__day--0') and not(contains(@class,'outside-month'))]")
     List<WebElement> daysList;
 
+    public PracticeFormsPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void PracticeFormsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -69,16 +64,15 @@ public class PracticeFormsPage {
     @FindBy(xpath = "//input[@name='gender']")
     List<WebElement> genderOptionsList;
 
-    public void selectGender(String genderValue) {
-        for (WebElement gender : genderOptionsList) {
-            if (gender.getAttribute("value").equalsIgnoreCase(genderValue)) {
-                try {
-                    gender.click();
-                } catch (Exception e) {
-                    elementsMethods.javaScriptElement(gender);
-                }
-                break;
-            }
-        }
+//    public void selectGender(String genderValue) {
+//        for (WebElement gender : genderOptionsList) {
+//            if (gender.getAttribute("value").equalsIgnoreCase(genderValue)) {
+//                try {
+//                    gender.click();
+//                } catch (Exception e) {
+//                    elementsMethods.javaScriptElement(gender);
+//                }
+//                break;
+//            }
+//        }
     }
-}

@@ -2,28 +2,23 @@ package tests;
 
 import helpMethods.ElementsMethods;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.ShareData;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class PracticeForms {
-    public WebDriver driver;
+public class PracticeForms extends ShareData {
+
     ElementsMethods elementsMethods;
 
     @Test
 
     public void metodaTest() {
-
-        driver = new ChromeDriver();
         elementsMethods = new ElementsMethods(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize();
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
         elementsMethods.javaScriptElement(formsMenu);
@@ -144,9 +139,8 @@ public class PracticeForms {
         Assert.assertEquals(valuelList.get(7).getText(), "IMG_20200222_074845_549.jpg");
         Assert.assertEquals(valuelList.get(8).getText(), "Brasov");
         Assert.assertEquals(valuelList.get(9).getText(), "NCR Delhi");
-        
+
     }
 }
-
 
 
