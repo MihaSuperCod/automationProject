@@ -21,13 +21,13 @@ public class FramesTest extends ShareData {
 
             public void metodaTest() {
 
-                elementsMethods = new ElementsMethods(driver);
-                frameMethods = new FrameMethods(driver);
+                elementsMethods = new ElementsMethods(getDriver());
+                frameMethods = new FrameMethods(getDriver());
 
-                HomePage homePage = new HomePage(driver);
+                HomePage homePage = new HomePage(getDriver());
                 homePage.clickAlertFrameWindow();
 
-                FramesPage frames = new FramesPage(driver);
+                FramesPage frames = new FramesPage(getDriver());
                 frames.clickFramesButton();
 
                 frameMethods.switchToSpecificFrame("frame1");

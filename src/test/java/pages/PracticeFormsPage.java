@@ -12,34 +12,34 @@ import java.util.List;
 public class PracticeFormsPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Practice Form']")
-    public WebElement practiceForm;
+    private WebElement practiceForm;
 
     @FindBy(id = "firstName")
-    public WebElement firstNameElement;
+    private WebElement firstNameElement;
 
     @FindBy(id = "lastName")
-    public WebElement lastnameElement;
+    private WebElement lastnameElement;
 
     @FindBy(id = "userEmail")
-    public WebElement emailElement;
+    private WebElement emailElement;
 
     @FindBy(id = "userNumber")
-    public WebElement mobileElement;
+    private WebElement mobileElement;
 
     @FindBy(id = "dateOfBirthInput")
-    public WebElement dateOfBirth;
+    private WebElement dateOfBirth;
 
     @FindBy(className = "react-datepicker__month-select")
-    public WebElement monthElement;
+    private WebElement monthElement;
 
     @FindBy(className = "react-datepicker__year-select")
-    public WebElement yearElement;
+    private WebElement yearElement;
 
 
     @FindBy(xpath = "//div[contains(@class,'react-datepicker__day--0') and not(contains(@class,'outside-month'))]")
     List<WebElement> daysList;
 
-    public PracticeFormsPage(WebDriver driver) {
+    private PracticeFormsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -59,7 +59,7 @@ public class PracticeFormsPage extends BasePage {
     }
 
     @FindBy(id = "currentAddress")
-    public WebElement currentAddressElement;
+    private WebElement currentAddressElement;
 
     @FindBy(xpath = "//input[@name='gender']")
     List<WebElement> genderOptionsList;
