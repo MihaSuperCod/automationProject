@@ -76,34 +76,34 @@ public class WebTablesPage extends BasePage{
         Assert.assertEquals(continutTabel.size(), 3, " Marimea tabelului nu este 3 ");
 
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        elementsMethod.clickElement(addElement);
+        elementsMethods.clickElement(addElement);
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         String firstName = "Johny";
-        elementsMethod.fillElement(firstNameElement, firstName);
+        elementsMethods.fillElement(firstNameElement, firstName);
 
         WebElement lastNameElement = driver.findElement(By.id("lastName"));
         String lastName = "Cash";
-        elementsMethod.fillElement(lastNameElement, lastName);
+        elementsMethods.fillElement(lastNameElement, lastName);
 
         WebElement userEmailElement = driver.findElement(By.id("userEmail"));
         String userEmai = "johnycash12n@gmail.com";
-        elementsMethod.fillElement(userEmailElement, userEmai);
+        elementsMethods.fillElement(userEmailElement, userEmai);
 
         WebElement ageElement = driver.findElement(By.id("age"));
         String age = "31";
-        elementsMethod.fillElement(ageElement, age);
+        elementsMethods.fillElement(ageElement, age);
 
         WebElement salaryElement = driver.findElement(By.id("salary"));
         String salary = "5000";
-        elementsMethod.fillElement(salaryElement, salary);
+        elementsMethods.fillElement(salaryElement, salary);
 
         WebElement departmentElement = driver.findElement(By.id("department"));
         String department = "Discogs";
-        elementsMethod.fillElement(departmentElement, department);
+        elementsMethods.fillElement(departmentElement, department);
 
         WebElement submitButton = driver.findElement(By.id("submit"));
-        elementsMethod.clickElement(submitButton);
+        elementsMethods.clickElement(submitButton);
 
         List<WebElement> continutTabelNou = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
         Assert.assertEquals(continutTabelNou.size(), 4, "Marimea tabelului nu este 4");
@@ -119,31 +119,31 @@ public class WebTablesPage extends BasePage{
 
     public void editProcess() {
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        elementsMethod.clickElement(editElement);
+        elementsMethods.clickElement(editElement);
 
         WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         editFirstNameElement.clear();
-        elementsMethod.fillElement(editFirstNameElement, "John");
+        elementsMethods.fillElement(editFirstNameElement, "John");
 
         WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         editLastNameElement.clear();
-        elementsMethod.fillElement(editLastNameElement, "Smith");
+        elementsMethods.fillElement(editLastNameElement, "Smith");
 
         WebElement editEmailElement = driver.findElement(By.id("userEmail"));
         editEmailElement.clear();
-        elementsMethod.fillElement(editEmailElement, "johnysmithasd2@conver.com");
+        elementsMethods.fillElement(editEmailElement, "johnysmithasd2@conver.com");
 
         WebElement editAgeElement = driver.findElement(By.id("age"));
         editAgeElement.clear();
-        elementsMethod.fillElement(editAgeElement, "50");
+        elementsMethods.fillElement(editAgeElement, "50");
 
         WebElement submitButton2Button = driver.findElement(By.id("submit"));
-        elementsMethod.clickElement(submitButton2Button);
+        elementsMethods.clickElement(submitButton2Button);
     }
 
     public void deleteProcess() {
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        elementsMethod.clickElement(deleteElement);
+        elementsMethods.clickElement(deleteElement);
 
         List<WebElement> continutTabelSters = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
         Assert.assertEquals(continutTabelSters.size(), 3, "Noul tabel nu contine 3 randuri");
