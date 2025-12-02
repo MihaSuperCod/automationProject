@@ -9,9 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.FramesPage;
 import pages.HomePage;
+import sharedData.Hooks;
 import sharedData.ShareData;
 
-public class FramesTest extends ShareData {
+import static java.sql.DriverManager.getDriver;
+
+public class FramesTest extends Hooks {
 
 
             ElementsMethods elementsMethods;
@@ -19,21 +22,23 @@ public class FramesTest extends ShareData {
 
             @Test
 
-            public void metodaTest() {
+            public class FramesTest extends Hooks {
+                ElementsMethods elementsMethod;
+                FrameMethods frameMethods;
 
-                elementsMethods = new ElementsMethods(getDriver());
-                frameMethods = new FrameMethods(getDriver());
+                @Test
 
-                HomePage homePage = new HomePage(getDriver());
-                homePage.clickAlertFrameWindow();
+                public void metodaTest() {
+                    //Deschidem un browser
 
-                FramesPage frames = new FramesPage(getDriver());
-                frames.clickFramesButton();
+                    elementsMethod = new ElementsMethods(getDriver());
+                    frameMethods = new FrameMethods(getDriver());
 
-                frameMethods.switchToSpecificFrame("frame1");
+                    HomePage homePage = new HomePage(getDriver());
+                    homePage.clickAlertFrameWindow();
 
-                frameMethods.switchToParent();
-
-                frameMethods.switchToSpecificFrame("frame2");
+                    FramesPage frames = new FramesPage(getDriver());
+                    frames.clickFramesButton();
+                    frames.switchFrames("frame1", "frame2");
             }
-        }
+        }}

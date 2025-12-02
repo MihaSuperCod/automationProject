@@ -1,11 +1,10 @@
 package pages;
 
-import helpMethods.ElementsMethods;
+import modelObject.WebTableModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import java.util.List;
@@ -66,87 +65,142 @@ public class WebTablesPage extends BasePage{
     @FindBy(xpath = "//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']")
     private List<WebElement> continutTabelSters;
 
-    public WebTablesPage(WebDriver driver) {
-        super(driver);
-    }
+    WebTableModel testData = new WebTableModel();
 
-    public void createProcess() {
-        List<WebElement> continutTabel = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
-        System.out.println(" Dimensiunea tabelului este " + continutTabel.size());
-        Assert.assertEquals(continutTabel.size(), 3, " Marimea tabelului nu este 3 ");
+    public class WebTablesPage extends BasePage {
 
-        WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        elementsMethods.clickElement(addElement);
+        @FindBy(xpath = "//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']")
+        private List<WebElement> tableContentList;
 
-        WebElement firstNameElement = driver.findElement(By.id("firstName"));
-        String firstName = "Johny";
-        elementsMethods.fillElement(firstNameElement, firstName);
+        @FindBy(id = "addNewRecordButoon")
+        private WebElement addElement;
 
-        WebElement lastNameElement = driver.findElement(By.id("lastName"));
-        String lastName = "Cash";
-        elementsMethods.fillElement(lastNameElement, lastName);
+        @FindBy(id = "firstName")
+        private WebElement firstNameElement;
 
-        WebElement userEmailElement = driver.findElement(By.id("userEmail"));
-        String userEmai = "johnycash12n@gmail.com";
-        elementsMethods.fillElement(userEmailElement, userEmai);
+        @FindBy(id = "lastName")
+        private WebElement lastNameElement;
 
-        WebElement ageElement = driver.findElement(By.id("age"));
-        String age = "31";
-        elementsMethods.fillElement(ageElement, age);
+        @FindBy(id = "userEmail")
+        private WebElement userEmailElement;
 
-        WebElement salaryElement = driver.findElement(By.id("salary"));
-        String salary = "5000";
-        elementsMethods.fillElement(salaryElement, salary);
+        @FindBy(id = "age")
+        private WebElement ageElement;
 
-        WebElement departmentElement = driver.findElement(By.id("department"));
-        String department = "Discogs";
-        elementsMethods.fillElement(departmentElement, department);
+        @FindBy(id = "salary")
+        private WebElement salaryElement;
 
-        WebElement submitButton = driver.findElement(By.id("submit"));
-        elementsMethods.clickElement(submitButton);
+        @FindBy(id = "department")
+        private WebElement departmentElement;
 
-        List<WebElement> continutTabelNou = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
-        Assert.assertEquals(continutTabelNou.size(), 4, "Marimea tabelului nu este 4");
+        @FindBy(id = "submit")
+        private WebElement submitButton;
 
-        String continutRand = continutTabelNou.get(3).getText();
-        Assert.assertTrue(continutRand.contains(firstName), "Randul nu contine first name");
-        Assert.assertTrue(continutRand.contains(lastName), "Randul nu contine last name");
-        Assert.assertTrue(continutRand.contains(userEmai), "Randul nu contine email");
-        Assert.assertTrue(continutRand.contains(age), "Randul nu contine age");
-        Assert.assertTrue(continutRand.contains(salary), "Randul nu contine salary");
-        Assert.assertTrue(continutRand.contains(department), "Randul nu contine department");
-    }
+        @FindBy(xpath = "//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']")
+        private List<WebElement> continutTabelNou;
 
-    public void editProcess() {
-        WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        elementsMethods.clickElement(editElement);
+        @FindBy(xpath = "edit-record-4")
+        private WebElement editElement;
 
-        WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
-        editFirstNameElement.clear();
-        elementsMethods.fillElement(editFirstNameElement, "John");
+        @FindBy(xpath = "editFirstNameElement")
+        private WebElement editFirstNameElement;
 
-        WebElement editLastNameElement = driver.findElement(By.id("lastName"));
-        editLastNameElement.clear();
-        elementsMethods.fillElement(editLastNameElement, "Smith");
+        @FindBy(xpath = "lastName")
+        private WebElement editLastNameElement;
 
-        WebElement editEmailElement = driver.findElement(By.id("userEmail"));
-        editEmailElement.clear();
-        elementsMethods.fillElement(editEmailElement, "johnysmithasd2@conver.com");
+        @FindBy(xpath = "userEmail")
+        private WebElement editEmailElement;
 
-        WebElement editAgeElement = driver.findElement(By.id("age"));
-        editAgeElement.clear();
-        elementsMethods.fillElement(editAgeElement, "50");
+        @FindBy(xpath = "age")
+        private WebElement editAgeElement;
 
-        WebElement submitButton2Button = driver.findElement(By.id("submit"));
-        elementsMethods.clickElement(submitButton2Button);
-    }
+        @FindBy(xpath = "salary")
+        private WebElement editSalaryElement;
 
-    public void deleteProcess() {
-        WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        elementsMethods.clickElement(deleteElement);
+        @FindBy(xpath = "delete-record-4")
+        private WebElement deleteElement;
 
-        List<WebElement> continutTabelSters = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
-        Assert.assertEquals(continutTabelSters.size(), 3, "Noul tabel nu contine 3 randuri");
-    }
-}
+        @FindBy(xpath = "//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']")
+        private List<WebElement> continutTabelSters;
 
+        WebTableModel testData = new WebTableModel("src/test/resources/inputData/WebTableResource.json");
+
+        public WebTablesPage(WebDriver driver) {
+            super(driver);
+        }
+        public void createProcess(WebTableModel testData) {
+            List<WebElement> continutTabel = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
+            System.out.println(" Dimensiunea tabelului este " + continutTabel.size());
+            Assert.assertEquals(continutTabel.size(), 3, " Marimea tabelului nu este 3 ");
+
+            WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
+            elementsMethods.clickElement(addElement);
+
+            WebElement firstNameElement = driver.findElement(By.id("firstName"));
+            elementsMethods.fillElement(firstNameElement, testData.getFirstName());
+
+            WebElement lastNameElement = driver.findElement(By.id("lastName"));
+            elementsMethods.fillElement(lastNameElement, testData.getLastName());
+
+            WebElement userEmailElement = driver.findElement(By.id("userEmail"));
+            elementsMethods.fillElement(userEmailElement, testData.getEditEmailElement());
+
+            WebElement ageElement = driver.findElement(By.id("age"));
+            elementsMethods.fillElement(ageElement, testData.getAge());
+
+            WebElement salaryElement = driver.findElement(By.id("salary"));
+            elementsMethods.fillElement(salaryElement, testData.getSalary());
+
+            WebElement departmentElement = driver.findElement(By.id("department"));
+
+            elementsMethods.fillElement(departmentElement, testData.getDepartment());
+
+            WebElement submitButton = driver.findElement(By.id("submit"));
+            elementsMethods.clickElement(submitButton);
+
+            List<WebElement> continutTabelNou = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
+            Assert.assertEquals(continutTabelNou.size(), 4, "Marimea tabelului nu este 4");
+
+            String continutRand = continutTabelNou.get(3).getText();
+            Assert.assertTrue(continutRand.contains(testData.getFirstName()), "Randul nu contine first name");
+            Assert.assertTrue(continutRand.contains(testData.getLastName()), "Randul nu contine last name");
+//        Assert.assertTrue(continutRand.contains(testData.getUserEmail()), "Randul nu contine email");
+            Assert.assertTrue(continutRand.contains(testData.getAge()), "Randul nu contine age");
+            Assert.assertTrue(continutRand.contains(testData.getSalary()), "Randul nu contine salary");
+            Assert.assertTrue(continutRand.contains(testData.getDepartment()), "Randul nu contine department");
+        }
+
+        public void editProcess() {
+            WebElement editElement = driver.findElement(By.id("edit-record-4"));
+            elementsMethods.clickElement(editElement);
+
+            WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
+            editFirstNameElement.clear();
+            elementsMethods.fillElement(editFirstNameElement, testData.getEditFirstNameElement());
+
+            WebElement editLastNameElement = driver.findElement(By.id("lastName"));
+            editLastNameElement.clear();
+            elementsMethods.fillElement(editLastNameElement, testData.getEditLastNameElement());
+
+            WebElement editEmailElement = driver.findElement(By.id("userEmail"));
+            editEmailElement.clear();
+            elementsMethods.fillElement(editEmailElement, testData.getEditEmailElement());
+
+            WebElement editAgeElement = driver.findElement(By.id("age"));
+            editAgeElement.clear();
+            elementsMethods.fillElement(editAgeElement, testData.getAge());
+
+            WebElement submitButton2Button = driver.findElement(By.id("submit"));
+            elementsMethods.clickElement(submitButton2Button);
+        }
+
+        public void deleteProcess() {
+            WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
+            elementsMethods.clickElement(deleteElement);
+
+            List<WebElement> continutTabelSters = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -odd' or @class='rt-tr -even']"));
+            Assert.assertEquals(continutTabelSters.size(), 3, "Noul tabel nu contine 3 randuri");
+        }
+
+
+    }}

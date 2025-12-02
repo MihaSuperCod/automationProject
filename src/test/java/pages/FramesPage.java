@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class FramesPage extends BasePage {
 
+
     @FindBy(xpath = "//span[text()='Frames']")
     private WebElement framesButton;
 
@@ -16,7 +17,7 @@ public class FramesPage extends BasePage {
         super(driver);
     }
 
-    public void clickFramesButton() {
+    public void clickFramesButton(){
         elementsMethods.javaScriptElement(framesButton);
     }
 

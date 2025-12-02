@@ -10,38 +10,47 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import sharedData.Hooks;
 import sharedData.ShareData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabWindowTest extends ShareData {
+public class TabWindowTest extends Hooks {
 
     ElementsMethods elementsMethods;
     TabMethods tabMethods;
 
     @Test
 
-    public void metodaTest() {
+    public class TabWindowTest extends Hooks {
 
-        elementsMethods = new ElementsMethods(getDriver());
-        tabMethods = new TabMethods(getDriver());
+        ElementsMethods elementsMethod;
+        TabMethods tabMethods;
 
-        HomePage homePage = new HomePage(getDriver());
-        homePage.clickAlertFrameWindow();
+        @Test
 
-        WebElement tabButton = getDriver().findElement(By.xpath("//span[text()='Browser Windows']"));
-        elementsMethods.javaScriptElement(tabButton);
+        public void metodaTest() {
 
-        WebElement newTabButton = getDriver().findElement(By.id("tabButton"));
-        elementsMethods.clickElement(newTabButton);
+            elementsMethod = new ElementsMethods(getDriver());
+            tabMethods = new TabMethods(getDriver());
 
-        tabMethods.switchSpecificTab(1);
-        tabMethods.closeCurrentTab();
-        tabMethods.switchSpecificTab(0);
+            HomePage homePage = new HomePage(getDriver());
+            homePage.clickAlertFrameWindow();
 
-        WebElement newWindowElement = getDriver().findElement(By.id("windowButton"));
-        elementsMethods.javaScriptElement(newWindowElement);
-        tabMethods.switchSpecificTab(1);
-    }
-}
+            WebElement tabButton = getDriver().findElement(By.xpath("//span[text()='Browser Windows']"));
+            elementsMethod.javaScriptElement(tabButton);
+
+            WebElement newTabButton = getDriver().findElement(By.id("tabButton"));
+            elementsMethod.clickElement(newTabButton);
+
+            tabMethods.switchSpecificTab(1);
+
+            tabMethods.closeCurrentTab();
+            tabMethods.switchSpecificTab(0);
+
+            WebElement newWindowElement = getDriver().findElement(By.id("windowButton"));
+            elementsMethod.javaScriptElement(newWindowElement);
+            tabMethods.switchSpecificTab(1);
+        }
+    }}

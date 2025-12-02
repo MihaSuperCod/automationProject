@@ -13,15 +13,13 @@ public class ShareData {
         return driver;
     }
 
-    @BeforeMethod
     public void setUpEnvironment() {
         driver = new ChromeDriver();
         driver.get("https://demoqa.com/");
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
-    public void clearEnvironment() {
+    public void quitEnvironment() {
         driver.quit();
     }
 }

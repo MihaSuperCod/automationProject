@@ -4,115 +4,61 @@ import helpMethods.ElementsMethods;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.Hooks;
 import sharedData.ShareData;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class PracticeForms extends ShareData {
+public class PracticeForms extends Hooks {
 
-    ElementsMethods elementsMethods;
+    ElementsMethods elementsMethod;
 
     @Test
-
     public void metodaTest() {
-        elementsMethods = new ElementsMethods(getDriver());
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
-        WebElement formsMenu = getDriver().findElement(By.xpath("//h5[text()='Forms']"));
-        elementsMethods.javaScriptElement(formsMenu);
+        //Deschidem un browser
+
+        elementsMethod = new ElementsMethods(getDriver());
+
+        WebElement formsMeniu = getDriver().findElement(By.xpath("//h5[text()='Forms']"));
+        elementsMethod.javaScriptElement(formsMeniu);
 
         WebElement practiceForm = getDriver().findElement(By.xpath("//span[text()='Practice Form']"));
-        elementsMethods.javaScriptElement(practiceForm);
+        elementsMethod.clickElement(practiceForm);
 
         WebElement firstNameElement = getDriver().findElement(By.id("firstName"));
-        elementsMethods.fillElement(firstNameElement, "Johny");
+        elementsMethod.fillElement(firstNameElement, "Johny");
 
         WebElement lastNameElement = getDriver().findElement(By.id("lastName"));
-        elementsMethods.fillElement(lastNameElement, "Cash");
+        elementsMethod.fillElement(lastNameElement, "Cash");
 
-        WebElement emailElement = getDriver().findElement(By.id("userEmail"));
-        elementsMethods.fillElement(emailElement, "test@gmail.com");
+        WebElement userEmailElement = getDriver().findElement(By.id("userEmail"));
+        elementsMethod.fillElement(userEmailElement,"mail@mail.com");
 
         WebElement mobileElement = getDriver().findElement(By.id("userNumber"));
-        elementsMethods.fillElement(mobileElement, "0728335508");
+        elementsMethod.fillElement(mobileElement, "0746430354");
+
+//        Date of birth interaction
 
         WebElement dateOfBirth = getDriver().findElement(By.id("dateOfBirthInput"));
-        dateOfBirth.click();
+        elementsMethod.clickElement(dateOfBirth);
 
         WebElement monthElement = getDriver().findElement(By.className("react-datepicker__month-select"));
-        elementsMethods.dropDownElement(monthElement, "January");
+        elementsMethod.dropDownElement(monthElement, "January");
 
         WebElement yearElement = getDriver().findElement(By.className("react-datepicker__year-select"));
-        elementsMethods.dropDownElement(yearElement, "2030");
+        elementsMethod.dropDownElement(yearElement, "2030");
 
         String dayValue = "15";
         List<WebElement> daysList = getDriver().findElements(By.xpath("//div[contains(@class,'react-datepicker__day--0') and not(contains(@class,'outside-month'))]"));
-        for (int index = 0; index < daysList.size(); index++){ ;
-            if (daysList.get(index).getText().equals(dayValue)){ ;
-                elementsMethods.clickElement(daysList.get(index));
+        for (int index=0; index<daysList.size();index++) {
+            if (daysList.get(index).getText().equals(dayValue)) {
+                elementsMethod.clickElement(daysList.get(index));
                 break;
             }
         }
-
-        WebElement currentAddressElement = getDriver().findElement(By.id("currentAddress"));
-        String currentAddress = "Brasov";
-        currentAddressElement.sendKeys(currentAddress);
-
-        List<WebElement> genderOptionsList = getDriver().findElements(By.xpath("//input[@name='gender']"));
-        String genderValue = "Male";
-
-        switch (genderValue) {
-            case "Male":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(0));
-                break;
-            case "Female":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(1));
-                break;
-            case "Other":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(2));
-                break;
-        }
-
-        WebElement subjectElementField = getDriver().findElement(By.id("subjectsInput"));
-//        String subjectValue = "Accounting";
-//        subjectElement.sendKeys(subjectValue);
-//        subjectElement.sendKeys(Keys.ENTER);
-
-        List<String> subjectElements = Arrays.asList("Accounting", "Maths", "English");
-        for (int index = 0; index < subjectElements.size(); index++) {
-            subjectElementField.sendKeys(subjectElements.get(index));
-            subjectElementField.sendKeys(Keys.ENTER);
-        }
-
-        List<String> hobbiesElements = Arrays.asList("Sports", "Reading", "Music");
-        List<WebElement> hobbiesCheckList = getDriver().findElements(By.xpath("//input[@type='checkbox']"));
-        for (int index = 0; index < hobbiesElements.size(); index++) {
-            js.executeScript("arguments[0].click();", hobbiesCheckList.get(index));
-        }
-
-        WebElement photoElementField = getDriver().findElement(By.id("uploadPicture"));
-        File resourcesDirectory = new File("src/test/resources/IMG_20200222_074845_549.jpg");
-        photoElementField.sendKeys(resourcesDirectory.getAbsolutePath());
-
-        WebElement stateElement = getDriver().findElement(By.xpath("//div[text()='Select State']"));
-        js.executeScript("arguments[0].click();", stateElement);
-        WebElement stateInputElement = getDriver().findElement(By.id("react-select-3-input"));
-        String stateValue ="NCR";
-        stateInputElement.sendKeys(stateValue);
-        stateInputElement.sendKeys(Keys.ENTER);
-
-        WebElement cityElement = getDriver().findElement(By.xpath("//div[text()='Select City']"));
-        js.executeScript("arguments[0].click();", cityElement);
-        WebElement cityInputElement = getDriver().findElement(By.id("react-select-4-input"));
-        String cityValue ="Delhi";
-        cityInputElement.sendKeys(cityValue);
-        cityInputElement.sendKeys(Keys.ENTER);
-
-        WebElement submitButton = getDriver().findElement(By.id("submit"));
-        submitButton.click();
-
         WebElement thankYouElement= getDriver().findElement(By.id("example-modal-sizes-title-lg"));
         Assert.assertEquals(thankYouElement.getText(), "Thanks for submitting the form");
 

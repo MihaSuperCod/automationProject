@@ -2,18 +2,11 @@ package tests;
 
 import helpMethods.AlertsMethods;
 import helpMethods.ElementsMethods;
-import helpMethods.ElementsMethods;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AlertsWindows;
 import pages.HomePage;
-import sharedData.ShareData;
+import sharedData.Hooks;
 
-import java.time.Duration;
-
-public class AlertTest extends ShareData {
+public class AlertTest extends Hooks {
 
     ElementsMethods elementsMethod;
     AlertsMethods alertsMethods;
@@ -24,13 +17,13 @@ public class AlertTest extends ShareData {
 
         elementsMethod = new ElementsMethods(getDriver());
         alertsMethods = new AlertsMethods(getDriver());
+        AlertModel testData = new AlertModel("src/test/resources/inputData/AlertResource.json");
 
         HomePage homePage = new HomePage(getDriver());
         homePage.clickAlertFrameWindow();
 
-        AlertsWindows alertsWindows = new AlertsWindows(getDriver());
+        AlertWindows alertsWindows = new AlertWindows(getDriver());
         alertsWindows.clickAlert();
-        alertsWindows.dealAlertProcess();
+        alertsWindows.dealAlertProcess(testData);
     }
 }
-
